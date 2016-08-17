@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 const DEV = process.env.NODE_ENV !== 'production';
@@ -27,6 +28,14 @@ const devPlugins = [
 ];
 
 const buildPlugins = [
+  new webpack.DefinePlugin(Object.assign({}, globals, {
+    'process.env': {
+      BROWSER: true,
+      // This has effect on the react lib size
+      NODE_ENV: JSON.stringify('production'),
+    },
+  })),
+  new ExtractTextPlugin('styles.css'),
   // Search for equal or similar files and deduplicate them in the output
   // https://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
   new webpack.optimize.DedupePlugin(),
@@ -69,7 +78,12 @@ module.exports = {
       },
       {
         test: /\.sass$/,
-        loader: `style!css?${cssModulesConfiguration}!postcss!sass?indentedSyntax`,
+        loader: DEV
+          ? `style!css?${cssModulesConfiguration}!postcss!sass?indentedSyntax`
+          : ExtractTextPlugin.extract(
+              'style-loader',
+              `css?${cssModulesConfiguration}!postcss!sass?indentedSyntax`
+            ),
       },
     ],
   },

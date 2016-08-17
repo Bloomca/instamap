@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --content-base build/ --inline --hot",
     "test": "ava **/*-test.js",
-    "test:ci": "ava **/*-test.js -w"
+    "test:ci": "ava **/*-test.js -w",
+    "build": "cross-env NODE_ENV=production webpack"
   },
   "repository": {
     "type": "git",
