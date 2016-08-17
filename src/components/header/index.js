@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Header extends Component {
-  render() {
-    return (
-      <div>
-        {'Instamap!'}
+// styles declaration
+import styles from './style.module.sass';
+
+export default function () {
+  return (
+    <header className={`mui-appbar ${styles.container}`}>
+      <div className={'mui-container mui--text-display1'}>
+        {'Instamap'}
       </div>
-    );
-  }
+    </header>
+  );
 }

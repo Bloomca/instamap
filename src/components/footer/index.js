@@ -1,11 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-export default class Footer extends Component {
-  render() {
-    return (
-      <div>
-        {'Footer. Made by Seva Zaikov'}
+// style declaration
+import styles from './style.module.sass';
+
+export default function () {
+  return (
+    <footer className={styles.container}>
+      <div className={'mui-container'}>
+        {'Made by Seva Zaikov'}
+        {' – '}
+        <a href={'https://github.com/Bloomca/instamap'} target={'_blank'} className={styles.link}>
+          {'Github'}
+        </a>
       </div>
-    );
-  }
+    </footer>
+  );
 }
