@@ -25,7 +25,7 @@ if (token) {
 } else {
   const params = {
     client_id: '4b6584973eb34cbca4839d8ff1230759',
-    redirect_uri: location.origin,
+    redirect_uri: location.origin + location.pathname,
     response_type: 'token',
   };
   const origin = 'https://api.instagram.com/oauth/authorize/';
